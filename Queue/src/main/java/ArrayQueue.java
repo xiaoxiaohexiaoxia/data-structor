@@ -1,5 +1,3 @@
-package com.xiao.util;
-
 /**
  * @author 肖立彤
  * @version 0.1
@@ -7,55 +5,54 @@ package com.xiao.util;
  * @date 2021/1/18 11:48 上午
  */
 public class ArrayQueue<E> implements Queue<E> {
-    private Array<E> data;
-    private int tailIndex = 0;
+    private Array<E> array;
 
     public ArrayQueue(int capacity) {
-        this.data = new Array<E>(capacity);
+        this.array = new Array<E>(capacity);
     }
 
     public ArrayQueue() {
-        this.data = new Array<E>();
+        this.array = new Array<E>();
     }
 
     @Override
     public void enqueue(E e) throws Exception {
-        this.data.add(tailIndex++, e);
+        this.array.addLast(e);
     }
 
     @Override
     public E dequeue() throws Exception {
-
-
+        E e = this.array.removeFirst();
+        return e;
     }
 
     @Override
     public E getFront() throws IllegalAccessException {
-        return this.data.getFirst();
+        return this.array.getFirst();
     }
 
     @Override
     public int getSize() {
-        return this.data.getSize();
+        return this.array.getSize();
     }
 
     @Override
     public boolean isEmpty() {
-        return this.data.isEmpty();
+        return this.array.isEmpty();
     }
 
     @Override
     public int getCapacity() {
-        return this.data.getCapacity();
+        return this.array.getCapacity();
     }
 
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder("Queue: front[");
-        for (int i = 0; i < data.getSize(); i++) {
+        for (int i = 0; i < array.getSize(); i++) {
             try {
-                res.append(data.get(i).toString());
-                if (i != data.getSize() - 1) {
+                res.append(array.get(i).toString());
+                if (i != array.getSize() - 1) {
                     res.append(",");
                 }
             } catch (IllegalAccessException e) {
