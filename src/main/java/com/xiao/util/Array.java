@@ -1,8 +1,5 @@
 package com.xiao.util;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * @author xiaolitong
  */
