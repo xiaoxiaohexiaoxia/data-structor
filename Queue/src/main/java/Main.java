@@ -1,3 +1,5 @@
+import javax.sound.midi.Soundbank;
+
 /**
  * @author 肖立彤
  * @version 0.1
@@ -6,6 +8,7 @@
  */
 public class Main {
     public static void main(String[] args) throws Exception {
+        System.out.println(111);
         ArrayQueue<Integer> integerArrayQueue = new ArrayQueue<Integer>();
         for (int i = 0; i < 20; i++) {
             integerArrayQueue.enqueue(i);
@@ -15,6 +18,5 @@ public class Main {
                 System.out.println(integerArrayQueue);
             }
         }
-
     }
 }
