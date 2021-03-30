@@ -18,19 +18,20 @@ public class SortingHelper {
         return true;
     }
 
+    /**
+     * 判断排序是否正确
+     * @param sort 排序算法
+     * @param e 排序数据
+     * @param <E> 数据类型
+     */
     public static <E extends Comparable<E>> void sortTest(Sort sort,E[] e){
-
         long start = System.nanoTime();
         sort.sort(e);
         long end = System.nanoTime();
         double time = (end - start) / 1000000000.0;
-
-
         if(!SortingHelper.isSort(e)){
             throw new RuntimeException(sort.getName() + "排序失败");
         }
-
-
-        System.out.println(String.format("%S, 规模 = %d : %f s",sort.getName(),e.length,time));
+        System.out.printf("%S, 规模 = %d : %f s%n",sort.getName(),e.length,time);
     }
 }

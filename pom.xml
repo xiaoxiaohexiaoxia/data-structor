@@ -23,6 +23,10 @@
     </build>
     <modules>
         <module>Queue</module>
+        <module>Array</module>
+        <module>LinkedList</module>
+        <module>Stack</module>
+        <module>Sort</module>
     </modules>
     <dependencies>
         <dependency>

@@ -1,8 +1,3 @@
-package com.xiao.util;
-
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * @author xiaolitong
  */
@@ -53,13 +48,16 @@ public class Array<T> {
     /**
      * @param index 要添加的位置
      * @param t     要添加的内容
-     * @throws IllegalAccessException 索引异常信息
      */
-    public void add(int index, T t) throws IllegalAccessException {
+    public void add(int index, T t) {
 
         // 判断索引是否合法
         if (index < 0 || index > this.size) {
-            throw new IllegalAccessException("索引需大于0 小于当前数组长度");
+            try {
+                throw new IllegalAccessException("索引需大于0 小于当前数组长度");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
         // 判断当前容量
         if (this.size == this.data.length) {
@@ -83,9 +81,8 @@ public class Array<T> {
      * 向末尾添加元素
      *
      * @param t 元素
-     * @throws IllegalAccessException 索引异常信息
      */
-    public void addLast(T t) throws IllegalAccessException {
+    public void addLast(T t) {
         add(size, t);
     }
 
@@ -93,9 +90,8 @@ public class Array<T> {
      * 向开头添加元素
      *
      * @param t 元素
-     * @throws IllegalAccessException 索引异常信息
      */
-    public void addFirst(T t) throws IllegalAccessException {
+    public void addFirst(T t){
         add(0, t);
     }
 
@@ -115,26 +111,27 @@ public class Array<T> {
      *
      * @param index 索引
      * @return 对应索引位置的元素
-     * @throws IllegalAccessException 输出参数异常
      */
-    public T get(int index) throws IllegalAccessException {
+    public T get(int index) {
         extracted(index);
         return data[index];
     }
-    public T getFirst() throws IllegalAccessException {
+
+    public T getFirst() {
         return get(0);
     }
-    public T getLast() throws IllegalAccessException {
+
+    public T getLast() {
         return this.get(this.size - 1);
     }
+
     /**
      * 更新某一索引的值
      *
      * @param index 索引
      * @param t     值
-     * @throws IllegalAccessException 传入参数异常
      */
-    void set(int index, T t) throws IllegalAccessException {
+    void set(int index, T t) {
         extracted(index);
         data[index] = t;
     }
@@ -174,9 +171,8 @@ public class Array<T> {
      *
      * @param index 指定的索引
      * @return 已删除的元素
-     * @throws IllegalAccessException 传入参数异常
      */
-    public T remove(int index) throws IllegalAccessException {
+    public T remove(int index) {
         extracted(index);
         T t = data[index];
         for (int i = index; i + 1 < size; i++) {
@@ -195,9 +191,8 @@ public class Array<T> {
      *
      * @param t 指定元素
      * @return 是否已删除
-     * @throws IllegalAccessException 索引异常
      */
-    public boolean removeElement(T t) throws IllegalAccessException {
+    public boolean removeElement(T t) {
         int i = find(t);
         if (i != -1) {
             remove(i);
@@ -212,9 +207,8 @@ public class Array<T> {
      *
      * @param t 指定元素
      * @return 删除元素个数
-     * @throws IllegalAccessException 索引异常
      */
-    public int removeAllElement(T t) throws IllegalAccessException {
+    public int removeAllElement(T t) {
         int i = 0;
         boolean isHave = true;
         while (isHave) {
@@ -228,9 +222,8 @@ public class Array<T> {
      * 移除第一个元素
      *
      * @return 移除的元素
-     * @throws IllegalAccessException 移除越界
      */
-    public T removeFirst() throws IllegalAccessException {
+    public T removeFirst() {
         return remove(0);
     }
 
@@ -238,9 +231,8 @@ public class Array<T> {
      * 移除最后一个元素
      *
      * @return 异常的元素
-     * @throws IllegalAccessException 异常越界
      */
-    public T removeLast() throws IllegalAccessException {
+    public T removeLast() {
         return remove(size - 1);
     }
 
@@ -258,14 +250,17 @@ public class Array<T> {
      * 判断索引是否合法
      *
      * @param index 索引
-     * @throws IllegalAccessException 传入参数异常
      */
-    private void extracted(int index) throws IllegalAccessException {
-        if (index < 0) {
-            throw new IllegalAccessException("请传入 大于0的索引");
-        }
-        if (index >= size) {
-            throw new IllegalAccessException("该位置不存在数据");
+    private void extracted(int index) {
+        try {
+            if (index < 0) {
+                throw new IllegalAccessException("请传入 大于0的索引");
+            }
+            if (index >= size) {
+                throw new IllegalAccessException("该位置不存在数据");
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 }
